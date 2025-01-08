@@ -17,6 +17,7 @@ CFLAGS      := -Wfatal-errors -Wall -Wextra -Wpedantic -Wconversion -Wshadow -We
 #---------------------------------------------------------------------------------
 SOURCES     := megaphone.cpp
 OBJECTS     := $(patsubst $(SRCDIR)/%,$(OBJDIR)/%,$(SOURCES:.$(SRCEXT)=.$(OBJEXT)))
+DEPS        := $(OBJECTS:.o=.d)
 
 #Default Make
 
@@ -25,8 +26,12 @@ all: $(TARGETDIR)/$(TARGET)
 #Remake
 re: fclean all
 
+# Dependencies
+-include $(DEPS)
+
 #Clean only Objects
 clean:
+	@$(RM) -rf *.d
 	@$(RM) -rf *.$(OBJEXT)
 
 #Full Clean, Objects and Binaries
@@ -38,4 +43,4 @@ $(TARGETDIR)/$(TARGET) : $(OBJECTS)
 
 #Compile
 %.$(OBJEXT): %.$(SRCEXT)
-	$(CC) $(CFLAGS) -c -o $@ $^ 
+	$(CC) $(CFLAGS) -MMD -c $< -o $@ 
