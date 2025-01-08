@@ -15,15 +15,5 @@ void search();
 void exit();
 };
 
-PhoneBook::PhoneBook(/* args */)
-{
-	
-}
-
-PhoneBook::~PhoneBook()
-{
-}
-
-
 #endif
 

@@ -23,13 +23,5 @@ public:
 	void setDarkestSecret();
 };
 
-Contact::Contact(/* args */)
-{
-}
-
-Contact::~Contact()
-{
-}
-
 
 #endif
