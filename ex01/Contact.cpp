@@ -21,3 +21,11 @@ void Contact::setDarkestSecret()
 {
 
 }
+
+Contact::Contact(void)
+{
+}
+
+Contact::~Contact(void)
+{
+}

@@ -6,13 +6,15 @@
 class PhoneBook
 {
 private:
-	Contact contacts[8];
+	Contact	contacts[8];
+	int		contactCount;
 public:
-	PhoneBook(/* args */);
-	~PhoneBook();
-void add();
-void search();
-void exit();
+	PhoneBook(void);
+	~PhoneBook(void);
+void	add();
+int		getContactCount(void);
+void	search();
+void	exit();
 };
 
 #endif

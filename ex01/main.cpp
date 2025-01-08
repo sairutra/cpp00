@@ -3,6 +3,10 @@
 int main (void)
 {
 	std::string command;
+	PhoneBook phonebook;
+
+	std::cout << phonebook.getContactCount();
+	std::cout << "\n";
 
 	while (true)
 	{
