@@ -11,22 +11,27 @@ SRCEXT      := cpp
 OBJEXT      := o
 
 #Flags, Libraries and Includes
-CFLAGS      := -Wall -Werror -Wextra -std=c++98
+CFLAGS      := -Wfatal-errors -Wall -Wextra -Wpedantic -Wconversion -Wshadow -Werror -std=c++98
 #---------------------------------------------------------------------------------
 #DO NOT EDIT BELOW THIS LINE
 #---------------------------------------------------------------------------------
 SOURCES     := main.cpp PhoneBook.cpp Contact.cpp
 OBJECTS     := $(patsubst $(SRCDIR)/%,$(OBJDIR)/%,$(SOURCES:.$(SRCEXT)=.$(OBJEXT)))
+DEPS        := $(OBJECTS:.o=.d)
 
 #Default Make
 
 all: $(TARGETDIR)/$(TARGET) 
+
+# Dependencies
+-include $(DEPS)
 
 #Remake
 re: fclean all
 
 #Clean only Objects
 clean:
+	@$(RM) -rf *.d
 	@$(RM) -rf *.$(OBJEXT)
 
 #Full Clean, Objects and Binaries
@@ -38,5 +43,5 @@ $(TARGETDIR)/$(TARGET) : $(OBJECTS)
 
 #Compile
 %.$(OBJEXT): %.$(SRCEXT)
-	$(CC) $(CFLAGS) -c -o $@ $^ 
+	$(CC) $(CFLAGS) -MMD -c $< -o $@ 
 
