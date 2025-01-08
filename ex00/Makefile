@@ -11,7 +11,7 @@ SRCEXT      := cpp
 OBJEXT      := o
 
 #Flags, Libraries and Includes
-CFLAGS      := -Wall -Werror -Wextra -std=c++98
+CFLAGS      := -Wfatal-errors -Wall -Wextra -Wpedantic -Wconversion -Wshadow -Werror -std=c++98
 #---------------------------------------------------------------------------------
 #DO NOT EDIT BELOW THIS LINE
 #---------------------------------------------------------------------------------
