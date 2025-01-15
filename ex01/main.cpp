@@ -1,21 +1,45 @@
 #include "PhoneBook.hpp"
 
+void	printPrompt()
+{
+	std::cout << "Enter a command : ADD - SEARCH - EXIT\n";
+}
+
+Commands getCommand(std::string input)
+{
+	if (input == "ADD")
+		return (Commands::ADD);
+	else if (input == "SEARCH")
+		return (Commands::SEARCH);
+	else if (input == "EXIT")
+		return (Commands::EXIT);
+	return (Commands::UNSPECIFIED);
+}
+
+void executeCommand(PhoneBook phonebook, Commands command)
+{
+	if (command == Commands::ADD)
+		phonebook.add();
+	else if (command == Commands::SEARCH)
+		phonebook.search();
+	else if (command == Commands::EXIT)
+		phonebook.exit();
+}
+
+// check this source : https://stackoverflow.com/questions/545907/what-is-the-best-way-to-do-input-validation-in-c-with-cin
+
 int main (void)
 {
-	std::string command;
+	std::string input;
 	PhoneBook phonebook;
-
-	std::cout << phonebook.getContactCount();
-	std::cout << "\n";
 
 	while (true)
 	{
-		std::cout << "Enter a command : ADD - SEARCH - EXIT\n";
-		getline(std::cin, command);
-		std::cout << command + "\n";
+		printPrompt();
+		getline(std::cin, input);
+		executeCommand(phonebook, getCommand(input));
+		if (phonebook.getExitProgram())
+			break;
 	}
-	// get input from terminal
-	// parse input
-	// get input again
 	return (0);
 }
