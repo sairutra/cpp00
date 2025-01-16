@@ -45,17 +45,23 @@ void	cinErrorHandling(PhoneBook &phonebook)
 	}
 }
 
+void	getInputLine(PhoneBook &phonebook, std::string &input)
+{
+	getline(std::cin, input);
+	cinErrorHandling(phonebook);
+}
+
 // REFERENCE: https://stackoverflow.com/questions/545907/what-is-the-best-way-to-do-input-validation-in-c-with-cin
 int main (void)
 {
 	std::string input;
 	PhoneBook phonebook;
+	Contact contact;
 
 	while (phonebook.getExecuteInputLoop())
 	{
 		printPrompt();
-		getline(std::cin, input);
-		cinErrorHandling(phonebook);
+		getInputLine(phonebook, input);
 		executeCommand(phonebook, getCommand(input));
 	}
 	return (0);
