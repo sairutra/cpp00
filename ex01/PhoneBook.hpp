@@ -16,13 +16,14 @@ class PhoneBook
 private:
 	Contact	contacts[8];
 	int		contactCount;
-	bool	exitProgram;
+	bool	executeInputLoop;
 public:
 	PhoneBook(void);
 	~PhoneBook(void);
 void	add();
 int		getContactCount(void);
-bool	getExitProgram(void);
+bool	getExecuteInputLoop(void);
+void	setExecuteInputLoop(bool);
 void	search();
 void	exit();
 };

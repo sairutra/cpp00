@@ -16,7 +16,7 @@ Commands getCommand(std::string input)
 	return (Commands::UNSPECIFIED);
 }
 
-void executeCommand(PhoneBook phonebook, Commands command)
+void executeCommand(PhoneBook &phonebook, Commands command)
 {
 	if (command == Commands::ADD)
 		phonebook.add();
@@ -33,13 +33,11 @@ int main (void)
 	std::string input;
 	PhoneBook phonebook;
 
-	while (true)
+	while (phonebook.getExecuteInputLoop())
 	{
 		printPrompt();
 		getline(std::cin, input);
 		executeCommand(phonebook, getCommand(input));
-		if (phonebook.getExitProgram())
-			break;
 	}
 	return (0);
 }
