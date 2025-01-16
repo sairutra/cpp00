@@ -12,10 +12,12 @@ enum class Commands
 	EXIT,
 };
 
+constexpr int contactArraySize = 8;
+
 class PhoneBook
 {
 private:
-	Contact	contacts[8];
+	Contact	contacts[contactArraySize];
 	int		contactCount;
 	bool	executeInputLoop;
 	bool	skipCommand;
@@ -23,9 +25,11 @@ public:
 	PhoneBook(void);
 	~PhoneBook(void);
 void	add();
+void	addContact(Contact);
 int		getContactCount(void);
 bool	getExecuteInputLoop(void);
 void	setExecuteInputLoop(bool);
+void	setContactCount(int);
 void	setSkipCommand(bool);
 bool	checkSkipCommand();
 void	search();

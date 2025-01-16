@@ -15,14 +15,44 @@ void	PhoneBook::setSkipCommand(bool value)
 	skipCommand = value;
 }
 
+void	PhoneBook::setContactCount(int value)
+{
+	contactCount = value;
+}
+
 void	PhoneBook::setExecuteInputLoop(bool value)
 {
 	executeInputLoop = value;
 }
 
+Contact createContact(void)
+{
+	Contact contact;
+
+	contact.setFirstName();
+	contact.setLastName();
+	contact.setNickName();
+	contact.setPhoneNumber();
+	contact.setDarkestSecret();
+	return (contact);
+}
+
+void PhoneBook::addContact(Contact contact)
+{
+	int	contactIndex;
+
+	contactIndex = getContactCount();
+	if (contactIndex > contactArraySize)
+		setContactCount(1);
+	contacts[contactIndex] = contact;
+}
+
 void PhoneBook::add()
 {
-	std::cout << "In phonebook add\n";
+	Contact contact;
+
+	contact = createContact();
+	addContact(contact);
 }
 
 void PhoneBook::search()
@@ -38,7 +68,7 @@ void PhoneBook::exit()
 
 PhoneBook::PhoneBook(void)
 {
-	contactCount = 0;
+	setContactCount(1);
 	setExecuteInputLoop(true);
 	setSkipCommand(false);
 }
