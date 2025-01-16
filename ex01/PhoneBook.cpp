@@ -1,5 +1,20 @@
 #include "PhoneBook.hpp"
 
+bool	PhoneBook::checkSkipCommand()
+{
+	if (skipCommand)
+	{
+		skipCommand = false;
+		return (true);
+	}
+	return (false);
+}
+
+void	PhoneBook::setSkipCommand(bool value)
+{
+	skipCommand = value;
+}
+
 void	PhoneBook::setExecuteInputLoop(bool value)
 {
 	executeInputLoop = value;
@@ -25,6 +40,7 @@ PhoneBook::PhoneBook(void)
 {
 	contactCount = 0;
 	setExecuteInputLoop(true);
+	setSkipCommand(false);
 }
 PhoneBook::~PhoneBook(void)
 {

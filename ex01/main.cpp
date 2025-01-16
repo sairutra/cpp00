@@ -18,7 +18,11 @@ Commands getCommand(std::string input)
 
 void executeCommand(PhoneBook &phonebook, Commands command)
 {
-	if (command == Commands::ADD)
+	if (!phonebook.getExecuteInputLoop())
+		return ; 
+	else if (phonebook.checkSkipCommand())
+		return ;
+	else if (command == Commands::ADD)
 		phonebook.add();
 	else if (command == Commands::SEARCH)
 		phonebook.search();
@@ -26,8 +30,22 @@ void executeCommand(PhoneBook &phonebook, Commands command)
 		phonebook.exit();
 }
 
-// check this source : https://stackoverflow.com/questions/545907/what-is-the-best-way-to-do-input-validation-in-c-with-cin
+void	cinErrorHandling(PhoneBook &phonebook)
+{
+	if (std::cin.eof())
+		phonebook.setExecuteInputLoop(false);
+	else if (std::cin.fail())
+	{
+		std::cerr << "cin failure, try to input again\n";
+		//clear fail state of cin
+		std::cin.clear();
+		// ignore rest of user input, skip till end of line
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		phonebook.setSkipCommand(true);
+	}
+}
 
+// REFERENCE: https://stackoverflow.com/questions/545907/what-is-the-best-way-to-do-input-validation-in-c-with-cin
 int main (void)
 {
 	std::string input;
@@ -37,6 +55,7 @@ int main (void)
 	{
 		printPrompt();
 		getline(std::cin, input);
+		cinErrorHandling(phonebook);
 		executeCommand(phonebook, getCommand(input));
 	}
 	return (0);
