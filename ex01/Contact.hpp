@@ -13,6 +13,7 @@ private:
 	std::string	nickName;
 	std::string phoneNumber;
 	std::string darkestSecret;
+	bool		abortProgram;
 public:
 	Contact();
 	~Contact();
@@ -21,12 +22,14 @@ public:
 	void setNickName();
 	void setPhoneNumber();
 	void setDarkestSecret();
+	void	setAbortProgram(bool);
 	std::string getFirstName();
 	std::string getLastName();
 	std::string getNickName();
 	std::string getPhoneNumber();
 	std::string getDarkestSecret();
 	std::string getInput(std::string);
+	bool	getAbortProgram();
 };
 
 

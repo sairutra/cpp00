@@ -1,9 +1,5 @@
 #include "PhoneBook.hpp"
-
-void	printPrompt()
-{
-	std::cout << "Enter a command : ADD - SEARCH - EXIT\n";
-}
+#include "Utils.hpp"
 
 Commands getCommand(std::string input)
 {
@@ -30,25 +26,13 @@ void executeCommand(PhoneBook &phonebook, Commands command)
 		phonebook.exit();
 }
 
-void	cinErrorHandling(PhoneBook &phonebook)
-{
-	if (std::cin.eof())
-		phonebook.setExecuteInputLoop(false);
-	else if (std::cin.fail())
-	{
-		std::cerr << "cin failure, try to input again\n";
-		//clear fail state of cin
-		std::cin.clear();
-		// ignore rest of user input, skip till end of line
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		phonebook.setSkipCommand(true);
-	}
-}
-
 void	getInputLine(PhoneBook &phonebook, std::string &input)
 {
 	getline(std::cin, input);
-	cinErrorHandling(phonebook);
+	if (cinEofFail())
+		phonebook.setExecuteInputLoop(false);
+	if (cinFail())
+		phonebook.setSkipCommand(true);
 }
 
 // REFERENCE: https://stackoverflow.com/questions/545907/what-is-the-best-way-to-do-input-validation-in-c-with-cin

@@ -29,11 +29,16 @@ Contact createContact(void)
 {
 	Contact contact;
 
-	contact.setFirstName();
-	contact.setLastName();
-	contact.setNickName();
-	contact.setPhoneNumber();
-	contact.setDarkestSecret();
+	if (!contact.getAbortProgram())
+		contact.setFirstName();
+	if (!contact.getAbortProgram())
+		contact.setLastName();
+	if (!contact.getAbortProgram())
+		contact.setNickName();
+	if (!contact.getAbortProgram())
+		contact.setPhoneNumber();
+	if (!contact.getAbortProgram())
+		contact.setDarkestSecret();
 	return (contact);
 }
 
@@ -52,6 +57,11 @@ void PhoneBook::add()
 	Contact contact;
 
 	contact = createContact();
+	if (contact.getAbortProgram())
+	{
+		setExecuteInputLoop(false);
+		return ;
+	}
 	addContact(contact);
 }
 

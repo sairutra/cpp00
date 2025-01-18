@@ -1,4 +1,5 @@
 #include "Contact.hpp"
+#include "Utils.hpp"
 
 void printPrompt(std::string &prompt)
 {
@@ -14,13 +15,16 @@ std::string Contact::getInput(std::string prompt)
 	std::string input;
 
 	printPrompt(prompt);
-	getline(std::cin, input);
-	// add get cin error handeling
-	while (input.empty())
+	while (!getAbortProgram() && input.empty())
 	{
-		printEmptyPrompt(prompt);
 		getline(std::cin, input);
-		// add get cin error handeling
+		if (cinFail() || cinEofFail())
+		{
+			setAbortProgram(true);
+			return (input);
+		}
+		if (input.empty())
+			printEmptyPrompt(prompt);
 	}
 	return (input);
 }
@@ -50,6 +54,10 @@ void Contact::setDarkestSecret()
 	darkestSecret = getInput("darkest secret");
 }
 
+void Contact::setAbortProgram(bool value)
+{
+	abortProgram = value;
+}
 std::string Contact::getFirstName()
 {
 	return (firstName);
@@ -71,8 +79,14 @@ std::string Contact::getDarkestSecret()
 	return (darkestSecret);
 }
 
+bool Contact::getAbortProgram()
+{
+	return (abortProgram);
+}
+
 Contact::Contact(void)
 {
+	abortProgram = false;
 }
 
 Contact::~Contact(void)
