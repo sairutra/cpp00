@@ -28,7 +28,7 @@ void	PhoneBook::setExecuteInputLoop(bool value)
 Contact createContact(void)
 {
 	Contact contact;
-
+	// put this in constructor of contact
 	if (!contact.getAbortProgram())
 		contact.setFirstName();
 	if (!contact.getAbortProgram())
@@ -55,7 +55,7 @@ void PhoneBook::addContact(Contact contact)
 void PhoneBook::add()
 {
 	Contact contact;
-
+	// immediately put this in array of contacts: contacts[index] = Contact();
 	contact = createContact();
 	if (contact.getAbortProgram())
 	{
@@ -63,12 +63,30 @@ void PhoneBook::add()
 		return ;
 	}
 	addContact(contact);
+	std::cout << contacts[0].getFirstName()<< std::endl;
+	setContactCount(getContactCount() + 1);
+}
+
+void PhoneBook::displayContacts()
+{
+	for (int i = 0; i < (contactCount - 1); i++)
+	{
+		std::cout<< "index: " << i;
+		std::cout<< contacts[i].getFirstName();
+		std::cout<< " ";
+		std::cout<< contacts[i].getLastName();
+		std::cout<< " ";
+		std::cout<< contacts[i].getNickName();
+		std::cout<< "\n";
+	}
 }
 
 void PhoneBook::search()
 {
-
-	std::cout << "In phonebook search\n";
+	// display contacts
+	displayContacts();
+	// get index for search
+	// index failure handeling
 }
 
 void PhoneBook::exit()

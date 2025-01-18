@@ -21,6 +21,7 @@ private:
 	int		contactCount;
 	bool	executeInputLoop;
 	bool	skipCommand;
+	void displayContacts();
 public:
 	PhoneBook(void);
 	~PhoneBook(void);

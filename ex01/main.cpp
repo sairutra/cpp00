@@ -44,6 +44,7 @@ int main (void)
 
 	while (phonebook.getExecuteInputLoop())
 	{
+		std::cout << "contact count: " << phonebook.getContactCount() << std::endl;
 		printPrompt();
 		getInputLine(phonebook, input);
 		executeCommand(phonebook, getCommand(input));
