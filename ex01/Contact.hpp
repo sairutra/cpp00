@@ -5,6 +5,16 @@
 
 #include <iostream>
 
+constexpr char indexColumn[] = "index";
+constexpr char firstNameColumn[] = "first name";
+constexpr char lastNameColumn[] = "last name";
+constexpr char nickNameColumn[] = "nick name";
+constexpr char phoneNumberColumn[] = "phone number";
+constexpr char darkestSecretColumn[] = "darkest secret";
+constexpr char emptyFieldMessage[] = "No empty fields allowed";
+constexpr char inputSeperator[] = ":";
+constexpr int  inputColumnWidth = 25;
+
 class Contact
 {
 private:

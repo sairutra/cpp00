@@ -3,11 +3,13 @@
 
 void printPrompt(std::string &prompt)
 {
-	std::cout << "Please fill in " + prompt + ": ";
+	std::cout.width(inputColumnWidth); std::cout << std::left << prompt; 
+	std::cout << inputSeperator; 
 }
 void printEmptyPrompt(std::string &prompt)
 {
-	std::cout << "No empty fields allowed, please provide " + prompt + ": ";
+	std::cout << emptyFieldMessage << std::endl;
+	printPrompt(prompt);
 }
 
 std::string Contact::getInput(std::string prompt)
@@ -31,27 +33,27 @@ std::string Contact::getInput(std::string prompt)
 
 void Contact::setFirstName()
 {
-	firstName = getInput("first name");
+	firstName = getInput(firstNameColumn);
 }
 void Contact::setLastName()
 {
 
-	lastName = getInput("last name");
+	lastName = getInput(lastNameColumn);
 }
 void Contact::setNickName()
 {
 
-	nickName = getInput("nick name");
+	nickName = getInput(nickNameColumn);
 }
 void Contact::setPhoneNumber()
 {
 
-	phoneNumber = getInput("phone number");
+	phoneNumber = getInput(phoneNumberColumn);
 }
 void Contact::setDarkestSecret()
 {
 
-	darkestSecret = getInput("darkest secret");
+	darkestSecret = getInput(darkestSecretColumn);
 }
 
 void Contact::setAbortProgram(bool value)
