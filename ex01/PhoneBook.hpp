@@ -26,9 +26,10 @@ public:
 	PhoneBook(void);
 	~PhoneBook(void);
 void	add();
-void	addContact(Contact);
 int		getContactCount(void);
+void addContact(Contact &contact);
 bool	getExecuteInputLoop(void);
+void	setContactIndex(void);
 void	setExecuteInputLoop(bool);
 void	setContactCount(int);
 void	setSkipCommand(bool);

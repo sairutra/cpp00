@@ -25,10 +25,14 @@ void	PhoneBook::setExecuteInputLoop(bool value)
 	executeInputLoop = value;
 }
 
-Contact createContact(void)
+void PhoneBook::setContactIndex(void)
 {
-	Contact contact;
-	// put this in constructor of contact
+	if (getContactCount() > contactArraySize)
+		setContactCount(1);
+}
+
+void PhoneBook::addContact(Contact &contact)
+{
 	if (!contact.getAbortProgram())
 		contact.setFirstName();
 	if (!contact.getAbortProgram())
@@ -39,32 +43,24 @@ Contact createContact(void)
 		contact.setPhoneNumber();
 	if (!contact.getAbortProgram())
 		contact.setDarkestSecret();
-	return (contact);
-}
-
-void PhoneBook::addContact(Contact contact)
-{
-	int	contactIndex;
-
-	contactIndex = getContactCount();
-	if (contactIndex > contactArraySize)
-		setContactCount(1);
-	contacts[contactIndex] = contact;
 }
 
 void PhoneBook::add()
 {
-	Contact contact;
-	// immediately put this in array of contacts: contacts[index] = Contact();
-	contact = createContact();
-	if (contact.getAbortProgram())
+	int	currentContactCount;
+	int	contactIndex;
+
+	currentContactCount = getContactCount();
+	setContactIndex();
+	contactIndex = (currentContactCount - 1);
+	addContact(contacts[contactIndex]);
+	if (contacts[contactIndex].getAbortProgram())
 	{
 		setExecuteInputLoop(false);
 		return ;
 	}
-	addContact(contact);
-	std::cout << contacts[0].getFirstName()<< std::endl;
-	setContactCount(getContactCount() + 1);
+	if (currentContactCount < contactArraySize)
+		setContactCount(currentContactCount + 1);
 }
 
 void PhoneBook::displayContacts()
