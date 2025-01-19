@@ -3,11 +3,11 @@
 
 Commands getCommand(std::string input)
 {
-	if (input == "ADD")
+	if (input == addToken)
 		return (Commands::ADD);
-	else if (input == "SEARCH")
+	else if (input == searchToken)
 		return (Commands::SEARCH);
-	else if (input == "EXIT")
+	else if (input == exitToken)
 		return (Commands::EXIT);
 	return (Commands::UNSPECIFIED);
 }
@@ -44,7 +44,6 @@ int main (void)
 
 	while (phonebook.getExecuteInputLoop())
 	{
-		std::cout << "contact count: " << phonebook.getContactCount() << std::endl;
 		printPrompt();
 		getInputLine(phonebook, input);
 		executeCommand(phonebook, getCommand(input));
