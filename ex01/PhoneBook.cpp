@@ -25,10 +25,10 @@ void	PhoneBook::setExecuteInputLoop(bool value)
 	executeInputLoop = value;
 }
 
-void PhoneBook::setContactIndex(void)
+void PhoneBook::resetContactCount(void)
 {
 	if (getContactCount() > contactArraySize)
-		setContactCount(1);
+		setContactCount(contactStartingCountNumber);
 }
 
 void PhoneBook::addContact(Contact &contact)
@@ -47,33 +47,39 @@ void PhoneBook::addContact(Contact &contact)
 
 void PhoneBook::add()
 {
-	int	currentContactCount;
 	int	contactIndex;
 
-	currentContactCount = getContactCount();
-	setContactIndex();
-	contactIndex = (currentContactCount - 1);
+	resetContactCount();
+	contactIndex = getContactIndex();
 	addContact(contacts[contactIndex]);
 	if (contacts[contactIndex].getAbortProgram())
 	{
 		setExecuteInputLoop(false);
 		return ;
 	}
-	if (currentContactCount < contactArraySize)
-		setContactCount(currentContactCount + 1);
+}
+void displayColumns(void)
+{
+	std::cout.width(columnWidth); std::cout << std::right << indexColumn << columnSeperator;
+	std::cout.width(columnWidth); std::cout << std::right << firstNameColumn << columnSeperator;
+	std::cout.width(columnWidth); std::cout << std::right << lastNameColumn << columnSeperator;
+	std::cout.width(columnWidth); std::cout << std::right << nickNameColumn << std::endl;
 }
 
 void PhoneBook::displayContacts()
 {
-	for (int i = 0; i < (contactCount - 1); i++)
+	int	contactIndex;
+
+	contactIndex = getContactIndex();
+	displayColumns();
+	for (int i = 0; i < contactIndex; i++)
 	{
-		std::cout<< "index: " << i;
-		std::cout<< contacts[i].getFirstName();
-		std::cout<< " ";
-		std::cout<< contacts[i].getLastName();
-		std::cout<< " ";
-		std::cout<< contacts[i].getNickName();
-		std::cout<< "\n";
+		// std::cout<< contacts[i].getFirstName();
+		// std::cout<< " ";
+		// std::cout<< contacts[i].getLastName();
+		// std::cout<< " ";
+		// std::cout<< contacts[i].getNickName();
+		// std::cout<< "\n";
 	}
 }
 
@@ -92,7 +98,7 @@ void PhoneBook::exit()
 
 PhoneBook::PhoneBook(void)
 {
-	setContactCount(1);
+	setContactCount(contactStartingCountNumber);
 	setExecuteInputLoop(true);
 	setSkipCommand(false);
 }
@@ -103,6 +109,11 @@ PhoneBook::~PhoneBook(void)
 int PhoneBook::getContactCount(void)
 {
 	return (contactCount);
+}
+
+int PhoneBook::getContactIndex(void)
+{
+	return (contactCount - 1);
 }
 
 bool	PhoneBook::getExecuteInputLoop(void)

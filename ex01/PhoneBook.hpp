@@ -2,6 +2,7 @@
 #	define PHONEBOOK_HPP
 
 #include "Contact.hpp"
+#include <iomanip>
 #include <limits>
 // https://stackoverflow.com/questions/545907/what-is-the-best-way-to-do-input-validation-in-c-with-cin
 enum class Commands
@@ -13,6 +14,12 @@ enum class Commands
 };
 
 constexpr int contactArraySize = 8;
+constexpr int columnWidth = 10;
+constexpr int contactStartingCountNumber = 1;
+constexpr char columnSeperator[] = "|";
+constexpr char addToken[] = "ADD";
+constexpr char searchToken[] = "SEARCH";
+constexpr char exitToken[] = "EXIT";
 
 class PhoneBook
 {
@@ -27,9 +34,10 @@ public:
 	~PhoneBook(void);
 void	add();
 int		getContactCount(void);
-void addContact(Contact &contact);
+void	addContact(Contact &contact);
 bool	getExecuteInputLoop(void);
-void	setContactIndex(void);
+int		getContactIndex(void);
+void	resetContactCount(void);
 void	setExecuteInputLoop(bool);
 void	setContactCount(int);
 void	setSkipCommand(bool);
