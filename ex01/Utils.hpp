@@ -5,7 +5,8 @@
 
 #include "PhoneBook.hpp"
 
-void	printPrompt();
+void	printRowSeperator(void);
+void	printPrompt(void);
 bool	cinEofFail(void);
 void	printCinFailure(void);
 bool	cinFail(void);

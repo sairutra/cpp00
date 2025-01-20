@@ -1,5 +1,10 @@
 #include "Utils.hpp"
 
+void	printRowSeperator(void)
+{
+	std::cout	<< std::string(44, rowSeperator) << std::endl;
+}
+
 void	printPrompt()
 {
 	std::cout << "Enter a command : ADD - SEARCH - EXIT\n";
