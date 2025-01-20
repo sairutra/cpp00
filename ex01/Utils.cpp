@@ -2,7 +2,7 @@
 
 void	printRowSeperator(void)
 {
-	std::cout	<< std::string(44, rowSeperator) << std::endl;
+	std::cout << std::string(rowSeperatorWidth, rowSeperator) << std::endl;
 }
 
 void	printPrompt()
