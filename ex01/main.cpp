@@ -16,20 +16,23 @@ void	executeExitCommand(PhoneBook &phonebook)
 {
 	printRowSeperator();
 	phonebook.exit();
-	printRowSeperator();
+	if (phonebook.getExecuteInputLoop())
+		printRowSeperator();
 }
 void	executeSearchCommand(PhoneBook &phonebook)
 {
 	printRowSeperator();
 	phonebook.search();
-	printRowSeperator();
+	if (phonebook.getExecuteInputLoop())
+		printRowSeperator();
 }
 
 void	executeAddCommand(PhoneBook &phonebook)
 {
 	printRowSeperator();
 	phonebook.add();
-	printRowSeperator();
+	if (phonebook.getExecuteInputLoop())
+		printRowSeperator();
 }
 
 void	executeCommand(PhoneBook &phonebook, Commands command)
@@ -49,10 +52,11 @@ void	executeCommand(PhoneBook &phonebook, Commands command)
 void	getInputLine(PhoneBook &phonebook, std::string &input)
 {
 	getline(std::cin, input);
-	if (cinEofFail())
+	if (isCinFailure())
+	{
 		phonebook.setExecuteInputLoop(false);
-	if (cinFail())
 		phonebook.setSkipCommand(true);
+	}
 }
 
 int	main (void)
