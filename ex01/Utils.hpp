@@ -6,11 +6,12 @@
 
 constexpr int rowSeperatorWidth = 44;
 
-void	printRowSeperator(void);
-void	printPrompt(void);
-bool	cinEofFail(void);
-void	printCinFailure(void);
-bool	cinFail(void);
+void		printRowSeperator(void);
+void		printPrompt(void);
+bool		checkCinEofFail(void);
+bool		checkCinFail(void);
+bool		isCinFailure(void);
+std::string	getInput(std::string);
 
 #endif
 

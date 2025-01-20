@@ -1,59 +1,35 @@
 #include "Contact.hpp"
 #include "Utils.hpp"
 
-void printPrompt(std::string &prompt)
-{
-	std::cout.width(inputColumnWidth); std::cout << std::left << prompt; 
-	std::cout << inputSeperator; 
-}
-void printEmptyPrompt(std::string &prompt)
-{
-	std::cout << emptyFieldMessage << std::endl;
-	printPrompt(prompt);
-}
-
-std::string Contact::getInput(std::string prompt)
-{
-	std::string input;
-
-	printPrompt(prompt);
-	while (!getAbortProgram() && input.empty())
-	{
-		getline(std::cin, input);
-		if (cinFail() || cinEofFail())
-		{
-			setAbortProgram(true);
-			return (input);
-		}
-		if (input.empty())
-			printEmptyPrompt(prompt);
-	}
-	return (input);
-}
-
 void Contact::setFirstName()
 {
 	firstName = getInput(firstNameColumn);
+	if (isCinFailure())
+		setAbortProgram(true);
 }
 void Contact::setLastName()
 {
-
 	lastName = getInput(lastNameColumn);
+	if (isCinFailure())
+		setAbortProgram(true);
 }
 void Contact::setNickName()
 {
-
 	nickName = getInput(nickNameColumn);
+	if (isCinFailure())
+		setAbortProgram(true);
 }
 void Contact::setPhoneNumber()
 {
-
 	phoneNumber = getInput(phoneNumberColumn);
+	if (isCinFailure())
+		setAbortProgram(true);
 }
 void Contact::setDarkestSecret()
 {
-
 	darkestSecret = getInput(darkestSecretColumn);
+	if (isCinFailure())
+		setAbortProgram(true);
 }
 
 void Contact::setAbortProgram(bool value)

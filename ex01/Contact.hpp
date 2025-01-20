@@ -40,7 +40,6 @@ public:
 	std::string	getNickName();
 	std::string	getPhoneNumber();
 	std::string	getDarkestSecret();
-	std::string	getInput(std::string);
 	bool		getAbortProgram();
 	bool		getInitialized();
 };

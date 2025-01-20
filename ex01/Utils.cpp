@@ -10,19 +10,14 @@ void	printPrompt()
 	std::cout << "Enter a command : ADD - SEARCH - EXIT\n";
 }
 
-bool	cinEofFail(void)
+bool	checkCinEofFail(void)
 {
 	if (std::cin.eof())
 		return (true);
 	return (false);
 }
 
-void printCinFailure(void)
-{
-	std::cerr << "cin failure, try to input again\n";
-}
-
-bool	cinFail(void)
+bool	checkCinFail(void)
 {
 	if (std::cin.fail())
 	{
@@ -33,4 +28,38 @@ bool	cinFail(void)
 		return (true);
 	}
 	return (false);
+}
+
+void printInputPrompt(std::string &prompt)
+{
+	std::cout.width(inputColumnWidth); std::cout << std::left << prompt; 
+	std::cout << inputSeperator; 
+}
+
+void printEmptyPrompt(std::string &prompt)
+{
+	std::cout << emptyFieldMessage << std::endl;
+	printInputPrompt(prompt);
+}
+bool	isCinFailure(void)
+{
+	if (checkCinFail() || checkCinEofFail())
+		return (true);
+	return (false);
+}
+
+std::string getInput(std::string prompt)
+{
+	std::string input;
+
+	printInputPrompt(prompt);
+	while (input.empty())
+	{
+		getline(std::cin, input);
+		if (isCinFailure())
+			return (input);
+		if (input.empty())
+			printEmptyPrompt(prompt);
+	}
+	return (input);
 }
