@@ -1,7 +1,7 @@
 #include "PhoneBook.hpp"
 #include "Utils.hpp"
 
-Commands getCommand(std::string input)
+Commands	getCommand(std::string input)
 {
 	if (input == addToken)
 		return (Commands::ADD);
@@ -12,18 +12,38 @@ Commands getCommand(std::string input)
 	return (Commands::UNSPECIFIED);
 }
 
-void executeCommand(PhoneBook &phonebook, Commands command)
+void	executeExitCommand(PhoneBook &phonebook)
+{
+	printRowSeperator();
+	phonebook.exit();
+	printRowSeperator();
+}
+void	executeSearchCommand(PhoneBook &phonebook)
+{
+	printRowSeperator();
+	phonebook.search();
+	printRowSeperator();
+}
+
+void	executeAddCommand(PhoneBook &phonebook)
+{
+	printRowSeperator();
+	phonebook.add();
+	printRowSeperator();
+}
+
+void	executeCommand(PhoneBook &phonebook, Commands command)
 {
 	if (!phonebook.getExecuteInputLoop())
 		return ; 
 	else if (phonebook.checkSkipCommand())
 		return ;
 	else if (command == Commands::ADD)
-		phonebook.add();
+		executeAddCommand(phonebook);
 	else if (command == Commands::SEARCH)
-		phonebook.search();
+		executeSearchCommand(phonebook);
 	else if (command == Commands::EXIT)
-		phonebook.exit();
+		executeExitCommand(phonebook);
 }
 
 void	getInputLine(PhoneBook &phonebook, std::string &input)
@@ -35,8 +55,7 @@ void	getInputLine(PhoneBook &phonebook, std::string &input)
 		phonebook.setSkipCommand(true);
 }
 
-// REFERENCE: https://stackoverflow.com/questions/545907/what-is-the-best-way-to-do-input-validation-in-c-with-cin
-int main (void)
+int	main (void)
 {
 	std::string input;
 	PhoneBook phonebook;
