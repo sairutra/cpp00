@@ -26,13 +26,13 @@ void	PhoneBook::setExecuteInputLoop(bool value)
 	executeInputLoop = value;
 }
 
-void PhoneBook::resetContactCount(void)
+void	PhoneBook::resetContactCount(void)
 {
 	if (getContactCount() > contactArraySize)
 		setContactCount(contactStartingCountNumber);
 }
 
-void PhoneBook::addContact(Contact &contact)
+void	PhoneBook::addContact(Contact &contact)
 {
 	if (!contact.getAbortProgram())
 		contact.setFirstName();
@@ -49,7 +49,7 @@ void PhoneBook::addContact(Contact &contact)
 	setContactCount(getContactCount() + 1);
 }
 
-void PhoneBook::add()
+void	PhoneBook::add()
 {
 	int	contactIndex;
 
@@ -88,7 +88,7 @@ void printColumn(std::string field)
 				<< truncateString(field) << columnSeperator; 
 }
 
-void PhoneBook::displayContacts()
+void	PhoneBook::displayContacts()
 {
 	displayColumns();
 	for (int i = 0; i < contactArraySize; i++)
@@ -108,7 +108,8 @@ void	printNoContactMessage()
 {
 	std::cout << "There are no contacts to display." << std::endl;
 }
-bool PhoneBook::checkNoContacts()
+
+bool	PhoneBook::checkNoContacts()
 {
 	if (getContactCount() == contactStartingCountNumber && 
 	!contacts[contactStartingCountNumber - 1].getInitialized())
@@ -119,7 +120,7 @@ bool PhoneBook::checkNoContacts()
 	return (false);
 }
 
-void PhoneBook::search()
+void	PhoneBook::search()
 {
 	if (checkNoContacts())
 		return ;
@@ -128,7 +129,7 @@ void PhoneBook::search()
 	// index failure handeling
 }
 
-void PhoneBook::exit()
+void	PhoneBook::exit()
 {
 	setExecuteInputLoop(false);
 }
@@ -139,16 +140,17 @@ PhoneBook::PhoneBook(void)
 	setExecuteInputLoop(true);
 	setSkipCommand(false);
 }
+
 PhoneBook::~PhoneBook(void)
 {
 }
 
-int PhoneBook::getContactCount(void) const
+int	PhoneBook::getContactCount(void) const
 {
 	return (contactCount);
 }
 
-int PhoneBook::getContactIndex(void) const 
+int	PhoneBook::getContactIndex(void) const 
 {
 	return (contactCount - 1);
 }

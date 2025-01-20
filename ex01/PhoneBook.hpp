@@ -4,7 +4,7 @@
 #include "Contact.hpp"
 #include <iomanip>
 #include <limits>
-// https://stackoverflow.com/questions/545907/what-is-the-best-way-to-do-input-validation-in-c-with-cin
+
 enum class Commands
 {
 	UNSPECIFIED,
