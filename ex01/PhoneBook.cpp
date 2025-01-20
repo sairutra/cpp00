@@ -102,6 +102,7 @@ void	PhoneBook::displayContacts()
 			std::cout << std::endl;
 		}
 	}
+	printRowSeperator();
 }
 
 void	printNoContactMessage()
@@ -120,13 +121,49 @@ bool	PhoneBook::checkNoContacts()
 	return (false);
 }
 
+int	PhoneBook::getSearchIndex()
+{
+	int	index;
+
+	try
+	{
+		index = std::stoi(getInput(searchInputIndexMessage));
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << "Please only provide a number." << '\n';
+		return (getSearchIndex());
+	}
+	if (isCinFailure())
+		setExecuteInputLoop(false);
+	return (index);
+}
+
+bool	checkIndexValidity(int	index)
+{
+	if ((index >= 0) && (index < contactArraySize))
+		return (true);
+	return (false);
+}
+
+void	PhoneBook::displayContactAt(int index)
+{
+	std::cout << "contact at index " << index << std::endl;
+}
+
 void	PhoneBook::search()
 {
+	int	index;
+
 	if (checkNoContacts())
 		return ;
 	displayContacts();
-	// get index for search
-	// index failure handeling
+	index = getSearchIndex();
+	if (getExecuteInputLoop())
+	{
+		if (checkIndexValidity(index))
+			displayContactAt(index);
+	}
 }
 
 void	PhoneBook::exit()

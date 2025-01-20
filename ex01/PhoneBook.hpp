@@ -23,6 +23,7 @@ constexpr char truncateCharacter[] = ".";
 constexpr char addToken[] = "ADD";
 constexpr char searchToken[] = "SEARCH";
 constexpr char exitToken[] = "EXIT";
+constexpr char	searchInputIndexMessage[] = "Contact number for more details"; 
 
 class PhoneBook
 {
@@ -32,6 +33,8 @@ private:
 	bool	executeInputLoop;
 	bool	skipCommand;
 	void	displayContacts();
+	int		getSearchIndex();
+	void	displayContactAt(int);
 public:
 		PhoneBook(void);
 		~PhoneBook(void);
