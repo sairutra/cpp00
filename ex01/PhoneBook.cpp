@@ -1,4 +1,5 @@
 #include "PhoneBook.hpp"
+#include "Utils.hpp"
 
 bool	PhoneBook::checkSkipCommand()
 {
@@ -61,6 +62,7 @@ void PhoneBook::add()
 		return ;
 	}
 }
+
 void displayColumns(void)
 {
 	std::cout	<< std::right << std::setw(columnWidth)
@@ -141,17 +143,17 @@ PhoneBook::~PhoneBook(void)
 {
 }
 
-int PhoneBook::getContactCount(void)
+int PhoneBook::getContactCount(void) const
 {
 	return (contactCount);
 }
 
-int PhoneBook::getContactIndex(void)
+int PhoneBook::getContactIndex(void) const 
 {
 	return (contactCount - 1);
 }
 
-bool	PhoneBook::getExecuteInputLoop(void)
+bool	PhoneBook::getExecuteInputLoop(void) const 
 {
 	return (executeInputLoop);
 }

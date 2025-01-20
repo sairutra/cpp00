@@ -18,6 +18,7 @@ constexpr int columnWidth = 10;
 constexpr int maxColumnDisplaySize = 10;
 constexpr int contactStartingCountNumber = 1;
 constexpr char columnSeperator[] = "|";
+constexpr char rowSeperator = '-';
 constexpr char truncateCharacter[] = ".";
 constexpr char addToken[] = "ADD";
 constexpr char searchToken[] = "SEARCH";
@@ -35,18 +36,18 @@ public:
 	PhoneBook(void);
 	~PhoneBook(void);
 void	add();
-int		getContactCount(void);
 void	addContact(Contact &contact);
+bool	checkSkipCommand();
 bool	checkNoContacts();
-bool	getExecuteInputLoop(void);
-int		getContactIndex(void);
+void	exit();
+int		getContactCount(void) const;
+bool	getExecuteInputLoop(void) const;
+int		getContactIndex(void) const;
 void	resetContactCount(void);
-void	setExecuteInputLoop(bool);
 void	setContactCount(int);
 void	setSkipCommand(bool);
-bool	checkSkipCommand();
+void	setExecuteInputLoop(bool);
 void	search();
-void	exit();
 };
 
 #endif
