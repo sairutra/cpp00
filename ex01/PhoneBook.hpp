@@ -31,23 +31,23 @@ private:
 	int		contactCount;
 	bool	executeInputLoop;
 	bool	skipCommand;
-	void displayContacts();
+	void	displayContacts();
 public:
-	PhoneBook(void);
-	~PhoneBook(void);
-void	add();
-void	addContact(Contact &contact);
-bool	checkSkipCommand();
-bool	checkNoContacts();
-void	exit();
-int		getContactCount(void) const;
-bool	getExecuteInputLoop(void) const;
-int		getContactIndex(void) const;
-void	resetContactCount(void);
-void	setContactCount(int);
-void	setSkipCommand(bool);
-void	setExecuteInputLoop(bool);
-void	search();
+		PhoneBook(void);
+		~PhoneBook(void);
+	void	add();
+	void	addContact(Contact &contact);
+	bool	checkSkipCommand();
+	bool	checkNoContacts();
+	void	exit();
+	int		getContactCount(void) const;
+	bool	getExecuteInputLoop(void) const;
+	int		getContactIndex(void) const;
+	void	resetContactCount(void);
+	void	setContactCount(int);
+	void	setSkipCommand(bool);
+	void	setExecuteInputLoop(bool);
+	void	search();
 };
 
 #endif

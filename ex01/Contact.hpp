@@ -5,15 +5,15 @@
 
 #include <iostream>
 
-constexpr char indexColumn[] = "index";
-constexpr char firstNameColumn[] = "first name";
-constexpr char lastNameColumn[] = "last name";
-constexpr char nickNameColumn[] = "nick name";
-constexpr char phoneNumberColumn[] = "phone number";
-constexpr char darkestSecretColumn[] = "darkest secret";
-constexpr char emptyFieldMessage[] = "No empty fields allowed";
-constexpr char inputSeperator[] = ":";
-constexpr int  inputColumnWidth = 25;
+constexpr char	indexColumn[] = "index";
+constexpr char	firstNameColumn[] = "first name";
+constexpr char	lastNameColumn[] = "last name";
+constexpr char	nickNameColumn[] = "nick name";
+constexpr char	phoneNumberColumn[] = "phone number";
+constexpr char	darkestSecretColumn[] = "darkest secret";
+constexpr char	emptyFieldMessage[] = "No empty fields allowed";
+constexpr char	inputSeperator[] = ":";
+constexpr int	inputColumnWidth = 25;
 
 class Contact
 {
@@ -28,21 +28,21 @@ private:
 public:
 	Contact();
 	~Contact();
-	void setFirstName();
-	void setLastName();
-	void setNickName();
-	void setPhoneNumber();
-	void setDarkestSecret();
-	void	setAbortProgram(bool);
-	void setInitialized(bool);
-	std::string getFirstName();
-	std::string getLastName();
-	std::string getNickName();
-	std::string getPhoneNumber();
-	std::string getDarkestSecret();
-	std::string getInput(std::string);
-	bool	getAbortProgram();
-	bool	getInitialized();
+	void		setFirstName();
+	void		setLastName();
+	void		setNickName();
+	void		setPhoneNumber();
+	void		setDarkestSecret();
+	void		setAbortProgram(bool);
+	void		setInitialized(bool);
+	std::string	getFirstName();
+	std::string	getLastName();
+	std::string	getNickName();
+	std::string	getPhoneNumber();
+	std::string	getDarkestSecret();
+	std::string	getInput(std::string);
+	bool		getAbortProgram();
+	bool		getInitialized();
 };
 
 
