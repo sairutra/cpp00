@@ -15,8 +15,10 @@ enum class Commands
 
 constexpr int contactArraySize = 8;
 constexpr int columnWidth = 10;
+constexpr int maxColumnDisplaySize = 10;
 constexpr int contactStartingCountNumber = 1;
 constexpr char columnSeperator[] = "|";
+constexpr char truncateCharacter[] = ".";
 constexpr char addToken[] = "ADD";
 constexpr char searchToken[] = "SEARCH";
 constexpr char exitToken[] = "EXIT";
@@ -35,6 +37,7 @@ public:
 void	add();
 int		getContactCount(void);
 void	addContact(Contact &contact);
+bool	checkNoContacts();
 bool	getExecuteInputLoop(void);
 int		getContactIndex(void);
 void	resetContactCount(void);

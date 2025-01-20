@@ -43,6 +43,9 @@ void PhoneBook::addContact(Contact &contact)
 		contact.setPhoneNumber();
 	if (!contact.getAbortProgram())
 		contact.setDarkestSecret();
+	if (!contact.getAbortProgram())
+		contact.setInitialized(true);
+	setContactCount(getContactCount() + 1);
 }
 
 void PhoneBook::add()
@@ -60,32 +63,64 @@ void PhoneBook::add()
 }
 void displayColumns(void)
 {
-	std::cout.width(columnWidth); std::cout << std::right << indexColumn << columnSeperator;
-	std::cout.width(columnWidth); std::cout << std::right << firstNameColumn << columnSeperator;
-	std::cout.width(columnWidth); std::cout << std::right << lastNameColumn << columnSeperator;
-	std::cout.width(columnWidth); std::cout << std::right << nickNameColumn << std::endl;
+	std::cout	<< std::right << std::setw(columnWidth)
+				<< indexColumn << columnSeperator;
+	std::cout	<< std::right << std::setw(columnWidth)
+				<< firstNameColumn << columnSeperator;
+	std::cout	<< std::right << std::setw(columnWidth)
+				<< lastNameColumn << columnSeperator;
+	std::cout	<< std::right << std::setw(columnWidth)
+				<< nickNameColumn << columnSeperator << std::endl;
+}
+
+std::string truncateString(std::string &field)
+{
+	if (field.length() > columnWidth)
+		return (field.substr(0, columnWidth - 1) + truncateCharacter);
+	return (field);
+}
+
+void printColumn(std::string field)
+{
+	std::cout	<< std::right << std::setw(columnWidth) 
+				<< truncateString(field) << columnSeperator; 
 }
 
 void PhoneBook::displayContacts()
 {
-	int	contactIndex;
-
-	contactIndex = getContactIndex();
 	displayColumns();
-	for (int i = 0; i < contactIndex; i++)
+	for (int i = 0; i < contactArraySize; i++)
 	{
-		// std::cout<< contacts[i].getFirstName();
-		// std::cout<< " ";
-		// std::cout<< contacts[i].getLastName();
-		// std::cout<< " ";
-		// std::cout<< contacts[i].getNickName();
-		// std::cout<< "\n";
+		if (contacts[i].getInitialized())
+		{
+			std::cout.width(columnWidth); std::cout << std::right << i << columnSeperator;
+			printColumn(contacts[i].getFirstName());
+			printColumn(contacts[i].getLastName());
+			printColumn(contacts[i].getNickName());
+			std::cout << std::endl;
+		}
 	}
+}
+
+void	printNoContactMessage()
+{
+	std::cout << "There are no contacts to display." << std::endl;
+}
+bool PhoneBook::checkNoContacts()
+{
+	if (getContactCount() == contactStartingCountNumber && 
+	!contacts[contactStartingCountNumber - 1].getInitialized())
+	{
+		printNoContactMessage();
+		return (true);
+	}
+	return (false);
 }
 
 void PhoneBook::search()
 {
-	// display contacts
+	if (checkNoContacts())
+		return ;
 	displayContacts();
 	// get index for search
 	// index failure handeling

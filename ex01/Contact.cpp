@@ -60,6 +60,12 @@ void Contact::setAbortProgram(bool value)
 {
 	abortProgram = value;
 }
+
+void Contact::setInitialized(bool value)
+{
+	initialized = value;
+}
+
 std::string Contact::getFirstName()
 {
 	return (firstName);
@@ -86,8 +92,14 @@ bool Contact::getAbortProgram()
 	return (abortProgram);
 }
 
+bool Contact::getInitialized()
+{
+	return (initialized);
+}
+
 Contact::Contact(void)
 {
+	initialized = false;
 	abortProgram = false;
 }
 
