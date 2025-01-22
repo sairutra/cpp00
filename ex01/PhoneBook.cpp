@@ -75,7 +75,7 @@ void displayColumns(void)
 				<< nickNameColumn << columnSeperator << std::endl;
 }
 
-std::string truncateString(std::string &field)
+std::string truncateString(const std::string &field)
 {
 	if (field.length() > columnWidth)
 		return (field.substr(0, columnWidth - 1) + truncateCharacter);
@@ -110,6 +110,11 @@ void	printNoContactMessage()
 	std::cout << "There are no contacts to display." << std::endl;
 }
 
+void	printContactNotFound()
+{
+	std::cout << "No contact found at index to display." << std::endl;
+}
+
 bool	PhoneBook::checkNoContacts()
 {
 	if (getContactCount() == contactStartingCountNumber && 
@@ -131,7 +136,7 @@ int	PhoneBook::getSearchIndex()
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << "Please only provide a number." << '\n';
+		std::cerr << "Please provide a reasonable number." << '\n';
 		return (getSearchIndex());
 	}
 	if (isCinFailure())
@@ -146,9 +151,32 @@ bool	checkIndexValidity(int	index)
 	return (false);
 }
 
+void	printRow(const std::string key, const std::string &value)
+{
+	std::cout	<< std::left << std::setw(15) 
+				<< key	<< inputSeperator
+				<< value << std::endl; 
+}
+
 void	PhoneBook::displayContactAt(int index)
 {
-	std::cout << "contact at index " << index << std::endl;
+	if (!contacts[index].getInitialized())
+	{
+		printContactNotFound();
+		return ;
+	}
+	printRowSeperator();
+	for (int i = 0; i < contactArraySize; i++)
+	{
+		if (contacts[i].getInitialized())
+		{
+			printRow(indexColumn, std::to_string(index));
+			printRow(firstNameColumn, contacts[i].getFirstName());
+			printRow(lastNameColumn, contacts[i].getLastName());
+			printRow(phoneNumberColumn, contacts[i].getPhoneNumber());
+			printRow(darkestSecretColumn, contacts[i].getDarkestSecret());
+		}
+	}
 }
 
 void	PhoneBook::search()
@@ -163,6 +191,8 @@ void	PhoneBook::search()
 	{
 		if (checkIndexValidity(index))
 			displayContactAt(index);
+		else
+			printContactNotFound();
 	}
 }
 

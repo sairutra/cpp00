@@ -24,6 +24,7 @@ constexpr char addToken[] = "ADD";
 constexpr char searchToken[] = "SEARCH";
 constexpr char exitToken[] = "EXIT";
 constexpr char	searchInputIndexMessage[] = "Contact number for more details"; 
+constexpr char	searchInputIndexMessage[] = "Contact number for more details"; 
 
 class PhoneBook
 {
