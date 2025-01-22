@@ -4,10 +4,7 @@
 bool	PhoneBook::checkSkipCommand()
 {
 	if (skipCommand)
-	{
-		skipCommand = false;
 		return (true);
-	}
 	return (false);
 }
 
@@ -107,12 +104,12 @@ void	PhoneBook::displayContacts()
 
 void	printNoContactMessage()
 {
-	std::cout << "There are no contacts to display." << std::endl;
+	std::cout << NoContactsMessage << std::endl;
 }
 
 void	printContactNotFound()
 {
-	std::cout << "No contact found at index to display." << std::endl;
+	std::cout << contactNotFoundMessage << std::endl;
 }
 
 bool	PhoneBook::checkNoContacts()
@@ -136,7 +133,7 @@ int	PhoneBook::getSearchIndex()
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << "Please provide a reasonable number." << '\n';
+		std::cerr << searchIndexExceptionMessage << std::endl;
 		return (getSearchIndex());
 	}
 	if (isCinFailure())
@@ -153,7 +150,7 @@ bool	checkIndexValidity(int	index)
 
 void	printRow(const std::string key, const std::string &value)
 {
-	std::cout	<< std::left << std::setw(15) 
+	std::cout	<< std::left << std::setw(printRowWidth) 
 				<< key	<< inputSeperator
 				<< value << std::endl; 
 }

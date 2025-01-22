@@ -40,7 +40,10 @@ void	executeCommand(PhoneBook &phonebook, Commands command)
 	if (!phonebook.getExecuteInputLoop())
 		return ; 
 	else if (phonebook.checkSkipCommand())
+	{
+		phonebook.setSkipCommand(false);
 		return ;
+	}
 	else if (command == Commands::ADD)
 		executeAddCommand(phonebook);
 	else if (command == Commands::SEARCH)

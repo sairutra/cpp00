@@ -15,6 +15,7 @@ enum class Commands
 
 constexpr int contactArraySize = 8;
 constexpr int columnWidth = 10;
+constexpr int printRowWidth = 10;
 constexpr int maxColumnDisplaySize = 10;
 constexpr int contactStartingCountNumber = 1;
 constexpr char columnSeperator[] = "|";
@@ -24,7 +25,9 @@ constexpr char addToken[] = "ADD";
 constexpr char searchToken[] = "SEARCH";
 constexpr char exitToken[] = "EXIT";
 constexpr char	searchInputIndexMessage[] = "Contact number for more details"; 
-constexpr char	searchInputIndexMessage[] = "Contact number for more details"; 
+constexpr char	contactNotFoundMessage[] = "No contact found at index to display.";
+constexpr char	searchIndexExceptionMessage[] = "Please provide a reasonable number.";
+constexpr char	NoContactsMessage[] = "There are no contacts to display.";
 
 class PhoneBook
 {
