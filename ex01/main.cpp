@@ -72,6 +72,7 @@ int	main (void)
 	{
 		printPrompt();
 		getInputLine(phonebook, input);
+		input = trim(input);
 		executeCommand(phonebook, getCommand(input));
 	}
 	return (0);

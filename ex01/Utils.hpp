@@ -12,6 +12,6 @@ bool		checkCinEofFail(void);
 bool		checkCinFail(void);
 bool		isCinFailure(void);
 std::string	getInput(std::string);
-
+std::string trim(const std::string& str);
 #endif
 

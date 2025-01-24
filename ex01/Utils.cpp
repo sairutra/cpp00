@@ -82,3 +82,15 @@ std::string getInput(std::string prompt)
 	}
 	return (input);
 }
+
+std::string trim(const std::string& str)
+{
+	size_t first;
+	size_t last;
+	
+	first = str.find_first_not_of(' ');
+	if (std::string::npos == first)
+		first = 0;
+	last = str.find_last_not_of(' ');
+	return (str.substr(first, (last - first + 1)));
+}
