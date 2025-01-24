@@ -4,6 +4,8 @@
 #include "Contact.hpp"
 #include <iomanip>
 #include <limits>
+#include <string>
+#include <cstddef> 
 
 enum class Commands
 {
@@ -38,7 +40,9 @@ private:
 	bool	skipCommand;
 	void	displayContacts();
 	int		getSearchIndex();
+	int		SearchIndexException();
 	void	displayContactAt(int);
+	int	tryConvertString(const std::string &string);
 public:
 		PhoneBook(void);
 		~PhoneBook(void);

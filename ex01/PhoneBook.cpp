@@ -123,22 +123,43 @@ bool	PhoneBook::checkNoContacts()
 	return (false);
 }
 
-int	PhoneBook::getSearchIndex()
+bool	isDigits(const std::string &string)
 {
-	int	index;
+	return (string.find_first_not_of("0123456789") == std::string::npos);
+}
 
+int	PhoneBook::tryConvertString(const std::string &string)
+{
+	int index;
 	try
 	{
-		index = std::stoi(getInput(searchInputIndexMessage));
+		index = std::stoi(string);
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << searchIndexExceptionMessage << std::endl;
-		return (getSearchIndex());
+		return (SearchIndexException());
 	}
+	return (index);
+}
+
+int	PhoneBook::getSearchIndex()
+{
+	int	index;
+	std::string input;
+	
+	input = getInput(searchInputIndexMessage);
+	if (!isDigits(input))
+		return (SearchIndexException());
+	index = tryConvertString(input);
 	if (isCinFailure())
 		setExecuteInputLoop(false);
 	return (index);
+}
+
+int	PhoneBook::SearchIndexException()
+{
+	std::cerr << searchIndexExceptionMessage << std::endl;
+	return (getSearchIndex());
 }
 
 bool	checkIndexValidity(int	index)
