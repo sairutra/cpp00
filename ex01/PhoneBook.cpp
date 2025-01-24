@@ -188,16 +188,13 @@ void	PhoneBook::displayContactAt(int index)
 		return ;
 	}
 	printRowSeperator();
-	for (int i = 0; i < contactArraySize; i++)
+	if (contacts[index].getInitialized())
 	{
-		if (contacts[i].getInitialized())
-		{
-			printRow(indexColumn, std::to_string(index));
-			printRow(firstNameColumn, contacts[i].getFirstName());
-			printRow(lastNameColumn, contacts[i].getLastName());
-			printRow(phoneNumberColumn, contacts[i].getPhoneNumber());
-			printRow(darkestSecretColumn, contacts[i].getDarkestSecret());
-		}
+		printRow(indexColumn, std::to_string(index));
+		printRow(firstNameColumn, contacts[index].getFirstName());
+		printRow(lastNameColumn, contacts[index].getLastName());
+		printRow(phoneNumberColumn, contacts[index].getPhoneNumber());
+		printRow(darkestSecretColumn, contacts[index].getDarkestSecret());
 	}
 }
 
