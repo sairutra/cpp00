@@ -147,18 +147,22 @@ int	PhoneBook::getSearchIndex()
 	int	index;
 	std::string input;
 	
+	if (isCinFailure())
+	{
+		setExecuteInputLoop(false);
+		return (0);
+	}
 	input = getInput(searchInputIndexMessage);
 	if (!isDigits(input))
 		return (SearchIndexException());
 	index = tryConvertString(input);
-	if (isCinFailure())
-		setExecuteInputLoop(false);
 	return (index);
 }
 
 int	PhoneBook::SearchIndexException()
 {
-	std::cerr << searchIndexExceptionMessage << std::endl;
+	if (!getExecuteInputLoop())
+		std::cerr << searchIndexExceptionMessage << std::endl;
 	return (getSearchIndex());
 }
 
