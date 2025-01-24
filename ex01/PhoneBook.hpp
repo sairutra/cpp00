@@ -17,7 +17,7 @@ enum class Commands
 
 constexpr int contactArraySize = 8;
 constexpr int columnWidth = 10;
-constexpr int printRowWidth = 10;
+constexpr int printRowWidth = 15;
 constexpr int maxColumnDisplaySize = 10;
 constexpr int contactStartingCountNumber = 1;
 constexpr char columnSeperator[] = "|";
