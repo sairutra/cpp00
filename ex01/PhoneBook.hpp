@@ -6,6 +6,7 @@
 #include <limits>
 #include <string>
 #include <cstddef> 
+#include <cctype> 
 
 enum class Commands
 {
@@ -30,6 +31,7 @@ constexpr char	searchInputIndexMessage[] = "Contact number for more details";
 constexpr char	contactNotFoundMessage[] = "No contact found at index to display.";
 constexpr char	searchIndexExceptionMessage[] = "Please provide a reasonable number.";
 constexpr char	NoContactsMessage[] = "There are no contacts to display.";
+constexpr char	isNotPrintableMessage[] = "Please provide input that is printable";
 
 class PhoneBook
 {

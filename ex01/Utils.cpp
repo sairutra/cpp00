@@ -36,10 +36,9 @@ void printInputPrompt(std::string &prompt)
 	std::cout << inputSeperator; 
 }
 
-void printEmptyPrompt(std::string &prompt)
+void printEmptyPrompt(void)
 {
 	std::cout << emptyFieldMessage << std::endl;
-	printInputPrompt(prompt);
 }
 bool	isCinFailure(void)
 {
@@ -48,18 +47,38 @@ bool	isCinFailure(void)
 	return (false);
 }
 
+void	printIsNotPrintable(void)
+{
+	std::cout << isNotPrintableMessage << std::endl;
+}
+
+bool	isPrintableString(std::string string)
+{
+	for (char c: string)
+	{
+		if (!std::isprint(c))
+		{
+			printIsNotPrintable();
+			return (false);
+		}
+	}
+	return (true);
+}
+
 std::string getInput(std::string prompt)
 {
 	std::string input;
 
-	printInputPrompt(prompt);
 	while (input.empty())
 	{
+		printInputPrompt(prompt);
 		getline(std::cin, input);
 		if (isCinFailure())
 			return (input);
 		if (input.empty())
-			printEmptyPrompt(prompt);
+			printEmptyPrompt();
+		if (!isPrintableString(input))
+			input.clear();
 	}
 	return (input);
 }
