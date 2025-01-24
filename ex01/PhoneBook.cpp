@@ -134,6 +134,7 @@ int	PhoneBook::tryConvertString(const std::string &string)
 	try
 	{
 		index = std::stoi(string);
+
 	}
 	catch(const std::exception& e)
 	{
@@ -147,12 +148,12 @@ int	PhoneBook::getSearchIndex()
 	int	index;
 	std::string input;
 	
+	input = getInput(searchInputIndexMessage);
 	if (isCinFailure())
 	{
 		setExecuteInputLoop(false);
 		return (0);
 	}
-	input = getInput(searchInputIndexMessage);
 	if (!isDigits(input))
 		return (SearchIndexException());
 	index = tryConvertString(input);
@@ -161,7 +162,7 @@ int	PhoneBook::getSearchIndex()
 
 int	PhoneBook::SearchIndexException()
 {
-	if (!getExecuteInputLoop())
+	if (getExecuteInputLoop())
 		std::cerr << searchIndexExceptionMessage << std::endl;
 	return (getSearchIndex());
 }
